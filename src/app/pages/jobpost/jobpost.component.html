@@ -26,14 +26,14 @@
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="row">
+       <!-- <div class="row">
           <div class="col-6">
             <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
           </div>
           <div class="col-6">
             <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
     <div class="row mb-5">
@@ -41,16 +41,16 @@
         <form class="p-4 p-md-5 border rounded" method="post">
           <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
 
-          <div class="form-group">
+          <!--<div class="form-group">
             <label for="company-website-tw d-block">Upload Featured Image</label> <br>
             <label class="btn btn-primary btn-md btn-file">
               Browse File<input type="file" hidden>
             </label>
-          </div>
+          </div>-->
 
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="you@yourdomain.com">
+            <label for="comapny">Company Name</label>
+            <input type="text" class="form-control" id="comapny-name" name="comapny-name" placeholder="Company Name">
           </div>
           <div class="form-group">
             <label for="job-title">Job Title</label>
@@ -58,29 +58,52 @@
           </div>
           <div class="form-group">
             <label for="job-location">Location</label>
-            <input type="text" class="form-control" id="job-location" placeholder="e.g. New York">
+            <input type="text" class="form-control" id="job-location" name="job-location" placeholder="e.g. New York">
           </div>
+          <div class="form-group">
+            <label for="vacancy">Vacancy</label>
+            <input type="text" class="form-control" id="vacancy" name="vacancy" placeholder="e.g. 20">
+          </div>
+          <div class="form-group">
+            <label for="publish-date">Publish Date</label>
 
+
+              <input matInput [matDatepicker]="dp3"  name="publish-date" class="form-control">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+
+          </div>
           <div class="form-group">
             <label for="job-region">Job Region</label>
-            <select class="selectpicker border rounded" id="job-region" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
-                  <option>Anywhere</option>
-                  <option>San Francisco</option>
-                  <option>Palo Alto</option>
-                  <option>New York</option>
-                  <option>Manhattan</option>
-                  <option>Ontario</option>
-                  <option>Toronto</option>
-                  <option>Kansas</option>
-                  <option>Mountain View</option>
+            <select class="form-control border rounded" id="job-region" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
+                  <option value="Anywhere">Anywhere</option>
+                  <option value="Alberta">Alberta</option>
+                  <option value="British Columbia">British Columbia</option>
+                  <option value="Manitoba">Manitoba</option>
+                  <option value="New Brunswick">New Brunswick</option>
+                  <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                  <option value=">Nova Scotia">Nova Scotia</option>
+                  <option value="Ontario">Ontario</option>
+                  <option value="Prince Edward Island">Prince Edward Island</option>
+                  <option value="Quebec">Quebec</option>
+                  <option value="Saskatchewan">Saskatchewan</option>
+                  <option value="Northwest Territories">Northwest Territories</option>
+                  <option value="Nunavut">Nunavut</option>
+                  <option value="Yukon">Yukon</option>
                 </select>
           </div>
 
           <div class="form-group">
-            <label for="job-type">Job Type</label>
-            <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
-              <option>Part Time</option>
-              <option>Full Time</option>
+            <label for="job-category">Job Category</label>
+            <select class="form-control border rounded" id="job-category" data-width="100%" data-live-search="true" title="Select Job Category">
+              <span *ngIf="(jobcategory$ | async) as jobcategory" >
+                <p>{{jobcategory}}</p>
+                <span *ngFor="let category of jobcategory" >
+                  <option value="1">{{ category.id }}</option>
+                </span>
+
+              </span>
             </select>
           </div>
 
@@ -88,54 +111,12 @@
           <div class="form-group">
             <label for="job-description">Job Description</label>
             <div class="editor" id="editor-1">
-              <p>Write Job Description!</p>
+              <textarea name="job-description" id="job-description" class="form-control"  style="min-height:70%"></textarea>
             </div>
           </div>
 
 
-          <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
-          <div class="form-group">
-            <label for="company-name">Company Name</label>
-            <input type="text" class="form-control" id="company-name" placeholder="e.g. New York">
-          </div>
 
-          <div class="form-group">
-            <label for="company-tagline">Tagline (Optional)</label>
-            <input type="text" class="form-control" id="company-tagline" placeholder="e.g. New York">
-          </div>
-
-          <div class="form-group">
-            <label for="job-description">Company Description (Optional)</label>
-            <div class="editor" id="editor-2">
-              <p>Description</p>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="company-website">Website (Optional)</label>
-            <input type="text" class="form-control" id="company-website" placeholder="https://">
-          </div>
-
-          <div class="form-group">
-            <label for="company-website-fb">Facebook Username (Optional)</label>
-            <input type="text" class="form-control" id="company-website-fb" placeholder="companyname">
-          </div>
-
-          <div class="form-group">
-            <label for="company-website-tw">Twitter Username (Optional)</label>
-            <input type="text" class="form-control" id="company-website-tw" placeholder="@companyname">
-          </div>
-          <div class="form-group">
-            <label for="company-website-tw">Linkedin Username (Optional)</label>
-            <input type="text" class="form-control" id="company-website-tw" placeholder="companyname">
-          </div>
-
-          <div class="form-group">
-            <label for="company-website-tw d-block">Upload Logo</label> <br>
-            <label class="btn btn-primary btn-md btn-file">
-              Browse File<input type="file" hidden>
-            </label>
-          </div>
 
         </form>
       </div>
@@ -146,9 +127,9 @@
 
       <div class="col-lg-4 ml-auto">
         <div class="row">
-          <div class="col-6">
+          <!--<div class="col-6">
             <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
-          </div>
+          </div>-->
           <div class="col-6">
             <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
           </div>
