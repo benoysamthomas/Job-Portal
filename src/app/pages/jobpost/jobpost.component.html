@@ -96,15 +96,15 @@
 
           <div class="form-group">
             <label for="job-category">Job Category</label>
-            <select class="form-control border rounded" id="job-category" data-width="100%" data-live-search="true" title="Select Job Category">
-              <span *ngIf="(jobcategory$ | async) as jobcategory" >
-                <p>{{jobcategory}}</p>
-                <span *ngFor="let category of jobcategory" >
-                  <option value="1">{{ category.id }}</option>
-                </span>
+            <span *ngIf="(jobcategory$ | async) as jcategory">
 
-              </span>
-            </select>
+              <select class="form-control border rounded" id="job-category"  title="Select Job Category">
+
+                <option *ngFor="let cat of jcategory;index as i" [value]="cat.id">{{ cat.CategoryName }}</option>
+
+              </select>
+            </span>
+
           </div>
 
 

@@ -14,12 +14,12 @@ export class JobcategoryService {
     return this.http.get("https://jobportal-3b9d6-default-rtdb.firebaseio.com/jobcategory.json").pipe(
       map(responseObj =>{
         const resultarr=[];
-        const objectresponse = responseObj as any
+        const objectresponse = responseObj as any[]
         for(let item in objectresponse){
              resultarr.push({...objectresponse[item],id:item})
 
         }
-        //console.log(resultarr);
+       // console.log(resultarr);
         return resultarr;
       }
 

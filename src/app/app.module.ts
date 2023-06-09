@@ -15,6 +15,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
+import { JobdetailsComponent } from './pages/jobdetails/jobdetails.component';
+import { JoblistcategoryComponent } from './pages/joblistcategory/joblistcategory.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     HomeComponent,
     JobpostComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    JobdetailsComponent,
+    JoblistcategoryComponent
   ],
   imports: [
     BrowserModule,
