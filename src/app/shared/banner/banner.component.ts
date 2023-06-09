@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { JobcategoryService } from 'src/app/services/jobcategory.service';
 
 @Component({
   selector: 'app-banner',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent {
+  jobcategory$!:Observable<any[]>;
 
+
+  constructor(private jobcategoryservice: JobcategoryService){}
+  ngOnInit(){
+   this.jobcategory$= this.jobcategoryservice.getJobCategories();
+  //console.log(this.jobcategory$);
+
+  }
 }
