@@ -16,7 +16,7 @@
 
 <section class="site-section">
   <div class="container">
-
+    <form #f="ngForm" (ngSubmit)="onFormSubmit(f)" class="p-4 p-md-5 border rounded" >
     <div class="row align-items-center mb-5">
       <div class="col-lg-8 mb-4 mb-lg-0">
         <div class="d-flex align-items-center">
@@ -38,9 +38,9 @@
     </div>
     <div class="row mb-5">
       <div class="col-lg-12">
-        <form class="p-4 p-md-5 border rounded" method="post">
-          <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
 
+          <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
+<pre>{{ f.value | json}}</pre>
           <!--<div class="form-group">
             <label for="company-website-tw d-block">Upload Featured Image</label> <br>
             <label class="btn btn-primary btn-md btn-file">
@@ -50,33 +50,37 @@
 
           <div class="form-group">
             <label for="comapny">Company Name</label>
-            <input type="text" class="form-control" id="comapny-name" name="comapny-name" placeholder="Company Name">
+            <input type="text" class="form-control" [ngClass]="{'is-invalid': !CompanyName.valid && CompanyName.touched}" required #CompanyName="ngModel" ngModel id="CompanyName" name="CompanyName" placeholder="Company Name">
+          <div class="text-danger" *ngIf="!CompanyName.valid && CompanyName.touched">Company Name is required</div>
           </div>
           <div class="form-group">
             <label for="job-title">Job Title</label>
-            <input type="text" class="form-control" id="job-title" placeholder="Product Designer">
+            <input type="text" class="form-control"  [ngClass]="{'is-invalid': !JobTitle.valid && JobTitle.touched}" required #JobTitle="ngModel" ngModel id="JobTitle" name="JobTitle" placeholder="e.g Product Designer">
+            <div class="text-danger" *ngIf="!JobTitle.valid && JobTitle.touched">Job Title  is required</div>
           </div>
           <div class="form-group">
             <label for="job-location">Location</label>
-            <input type="text" class="form-control" id="job-location" name="job-location" placeholder="e.g. New York">
+            <input type="text" class="form-control"  [ngClass]="{'is-invalid': !JobLocation.valid && JobLocation.touched}" required #JobLocation="ngModel"  ngModel id="JobLocation" name="JobLocation" placeholder="e.g. New York">
+            <div class="text-danger" *ngIf="!JobLocation.valid && JobLocation.touched">Job Location  is required</div>
           </div>
           <div class="form-group">
             <label for="vacancy">Vacancy</label>
-            <input type="text" class="form-control" id="vacancy" name="vacancy" placeholder="e.g. 20">
+            <input type="number" class="form-control" [ngClass]="{'is-invalid': !JobVacancy.valid && JobVacancy.touched}" required #JobVacancy="ngModel" ngModel id="JobVacancy" name="JobVacancy" placeholder="e.g. 20">
+            <div class="text-danger" *ngIf="!JobVacancy.valid && JobVacancy.touched"> Vacancy Number  is required</div>
           </div>
           <div class="form-group">
             <label for="publish-date">Publish Date</label>
 
 
-              <input matInput [matDatepicker]="dp3"  name="publish-date" class="form-control">
+              <input matInput [matDatepicker]="dp3"  [ngClass]="{'is-invalid': !PublishDate.valid && PublishDate.touched}" required #PublishDate="ngModel" ngModel name="PublishDate" class="form-control">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
               <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-
+              <div class="text-danger" *ngIf="!PublishDate.valid && PublishDate.touched"> Publish Date  is required</div>
           </div>
           <div class="form-group">
             <label for="job-region">Job Region</label>
-            <select class="form-control border rounded" id="job-region" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
+            <select class="form-control border rounded" [ngClass]="{'is-invalid': !JobRegion.valid && JobRegion.touched}" required #JobRegion="ngModel" ngModel id="JobRegion" name="JobRegion" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
                   <option value="Anywhere">Anywhere</option>
                   <option value="Alberta">Alberta</option>
                   <option value="British Columbia">British Columbia</option>
@@ -92,18 +96,22 @@
                   <option value="Nunavut">Nunavut</option>
                   <option value="Yukon">Yukon</option>
                 </select>
+                <div class="text-danger" *ngIf="!JobRegion.valid && JobRegion.touched"> Region  is required</div>
+
           </div>
 
           <div class="form-group">
             <label for="job-category">Job Category</label>
             <span *ngIf="(jobcategory$ | async) as jcategory">
 
-              <select class="form-control border rounded" id="job-category"  title="Select Job Category">
+              <select class="form-control border rounded" [ngClass]="{'is-invalid': !CategoryId.valid && CategoryId.touched}" required #CategoryId="ngModel"   ngModel id="CategoryId" name="CategoryId" title="Select Job Category">
 
                 <option *ngFor="let cat of jcategory;index as i" [value]="cat.id">{{ cat.CategoryName }}</option>
 
               </select>
+              <div class="text-danger" *ngIf="!CategoryId.valid && CategoryId.touched"> Job Category  is required</div>
             </span>
+
 
           </div>
 
@@ -111,14 +119,15 @@
           <div class="form-group">
             <label for="job-description">Job Description</label>
             <div class="editor" id="editor-1">
-              <textarea name="job-description" id="job-description" class="form-control"  style="min-height:70%"></textarea>
+              <textarea ngModel  id="JobDescription" [ngClass]="{'is-invalid': !JobDescription.valid && JobDescription.touched}" required #JobDescription="ngModel" name="JobDescription" class="form-control"  style="min-height:70%"></textarea>
             </div>
+            <div class="text-danger" *ngIf="!JobDescription.valid && JobDescription.touched"> Job Description  is required</div>
           </div>
 
 
 
 
-        </form>
+
       </div>
 
 
@@ -127,14 +136,14 @@
 
       <div class="col-lg-4 ml-auto">
         <div class="row">
-          <!--<div class="col-6">
-            <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
-          </div>-->
-          <div class="col-6">
-            <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
+
+          <div class="col-12">
+            <button [disabled]="!f.valid" type="submit"  class="btn btn-block btn-primary btn-md">Save Job</button>
           </div>
         </div>
       </div>
     </div>
+  </form>
   </div>
 </section>
+

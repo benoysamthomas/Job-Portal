@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { NgForm,Form } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { JobcategoryService } from 'src/app/services/jobcategory.service';
 
@@ -10,7 +11,10 @@ import { JobcategoryService } from 'src/app/services/jobcategory.service';
 })
 export class JobpostComponent implements OnInit {
 jobcategory$!:Observable<any[]>;
+onFormSubmit(formResponse:NgForm){
 
+
+}
 
 constructor(private jobcategoryservice: JobcategoryService){}
 ngOnInit(){

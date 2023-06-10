@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map,tap} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +11,7 @@ export class JobsService {
 
 
     return this.http.get("https://jobportal-3b9d6-default-rtdb.firebaseio.com/jobs.json").pipe(
+
       map(responseObj =>{
         const resultarr=[];
         const objectresponse = responseObj as any[]

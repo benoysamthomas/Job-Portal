@@ -1,4 +1,4 @@
-<section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('assets/images/hero_1.jpg');" id="home-section">
   <div class="container">
     <div class="row">
       <div class="col-md-7">
@@ -18,25 +18,27 @@
 
       <div class="col-lg-8 md-6">
         <h2 class="mb-4">Log In </h2>
-        <form action="#" class="p-4 border rounded">
+        <form [formGroup]="loginform" class="p-4 border rounded" (ngSubmit)="onSubmit()">
 
           <div class="row form-group">
             <div class="col-md-12 mb-3 mb-md-0">
-              <label class="text-black" for="fname">Email</label>
-              <input type="text" id="fname" class="form-control" placeholder="Email address">
+              <label class="text-black" for="Email">Email</label>
+              <input type="text" [ngClass]="{'is-invalid': isEmailValid }" id="email" formControlName="email" name="email" class="form-control" placeholder="Email address">
+            <div *ngIf="isEmailValid"  class="text-danger"> Please Provide a Valid Email</div>
             </div>
           </div>
           <div class="row form-group mb-4">
             <div class="col-md-12 mb-3 mb-md-0">
-              <label class="text-black" for="fname">Password</label>
-              <input type="password" id="fname" class="form-control" placeholder="Password">
+              <label class="text-black" for="Password">Password</label>
+              <input type="password" id="password" [ngClass]="{'is-invalid': isPasswordValid }" formControlName="password" name="password" class="form-control" placeholder="Password">
+              <div *ngIf="isPasswordValid"  class="text-danger"> Please Provide a Valid Email</div>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-12">
-              <input type="submit" value="Log In" class="btn px-4 btn-primary text-white">
-              &nbsp;<a routerLink="/signup" >Click here if you are a new User</a>
+              <input type="submit" [disabled]="loginform.invalid" value="Log In" class="btn px-4 btn-primary text-white">
+              &nbsp;<a  href="/signup" class="" >Click here if you are a new User?</a>
             </div>
           </div>
 

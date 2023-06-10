@@ -7,14 +7,15 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { JobpostComponent } from './pages/jobpost/jobpost.component';
-import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
 import { JobdetailsComponent } from './pages/jobdetails/jobdetails.component';
+import { FormsModule } from '@angular/forms';
+import { LoginModule } from './pages/login/login.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +23,6 @@ import { JobdetailsComponent } from './pages/jobdetails/jobdetails.component';
     FooterComponent,
     HomeComponent,
     JobpostComponent,
-    LoginComponent,
-    SignupComponent,
     JobdetailsComponent,
 
   ],
@@ -32,6 +31,8 @@ import { JobdetailsComponent } from './pages/jobdetails/jobdetails.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
+    LoginModule,
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,

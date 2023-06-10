@@ -10,6 +10,7 @@
       <li><a routerLink="/home" routerLinkActive="nav-link active-link"  (click)="toggleNavClose()">Home</a></li>
       <li><a routerLink="/about" routerLinkActive="nav-link active-link"  (click)="toggleNavClose()">About</a></li>
       <li><a routerLink="/job" routerLinkActive="nav-link active-link"   (click)="toggleNavClose()">Jobs</a></li>
+
       <li><a routerLink="/jobpost" routerLinkActive="nav-link active-link"  (click)="toggleNavClose()">Job Post</a></li>
       <li><a routerLink="/login" routerLinkActive="nav-link active-link"  (click)="toggleNavClose()">Login</a></li>
         <!-- <li class="has-children">
@@ -38,16 +39,24 @@
       <li><a routerLink="/about" routerLinkActive="nav-link active" >About</a></li>
       <li><a routerLink="/jobs" routerLinkActive="nav-link active" >Jobs</a></li>
 
-          <li class="d-lg-none"><a routerLink="/jobpost" routerLinkActive="nav-link active"><span class="mr-2">+</span> Post a Job</a></li>&nbsp;
-          <li class="d-lg-none"><a  routerLink="/login" routerLinkActive="nav-link active">Log In</a></li>
+          <li class="d-lg-none"><a routerLink="/jobpost" routerLinkActive="nav-link active"><span class="mr-2">+</span> Post a Job1</a></li>&nbsp;
+          <li class="d-lg-none"><a  routerLink="/login" routerLinkActive="nav-link active">Log In1</a></li>
         </ul>
       </nav>
 
       <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
-        <div class="ml-auto">
+        <div class="ml-auto"  *ngIf="(currentLoginStatus$ |async) as currentLogin; else logintemplate">
           <a routerLink="/jobpost" routerLinkActive="nav-link active" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>&nbsp;
-          <a routerLink="/login" routerLinkActive="nav-link active" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+          <a (click)="logout()" class="btn btn-primary border-width-2 d-none d-lg-inline-block" href="#"><span class="mr-2 "></span>Log Out</a>
+
         </div>
+        <ng-template  #logintemplate >
+          <div class="ml-auto"  >
+         <a routerLink="/login" routerLinkActive="nav-link active" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
+
+          </div>
+        </ng-template>
+
         <a href="#" (click)="toggleNav()" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
       </div>
 
