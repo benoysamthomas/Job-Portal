@@ -4,7 +4,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { BannerComponent } from './shared/banner/banner.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { JobpostComponent } from './pages/jobpost/jobpost.component';
@@ -16,19 +15,17 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
 import { JobdetailsComponent } from './pages/jobdetails/jobdetails.component';
-import { JoblistcategoryComponent } from './pages/joblistcategory/joblistcategory.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    BannerComponent,
     FooterComponent,
     HomeComponent,
     JobpostComponent,
     LoginComponent,
     SignupComponent,
     JobdetailsComponent,
-    JoblistcategoryComponent
+
   ],
   imports: [
     BrowserModule,
