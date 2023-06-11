@@ -1,7 +1,9 @@
 import { Component,OnInit } from '@angular/core';
 import { NgForm,Form } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable,take,tap } from 'rxjs';
 import { JobcategoryService } from 'src/app/services/jobcategory.service';
+import { JobsService } from 'src/app/services/jobs.service';
 
 @Component({
   selector: 'app-jobpost',
@@ -11,17 +13,22 @@ import { JobcategoryService } from 'src/app/services/jobcategory.service';
 })
 export class JobpostComponent implements OnInit {
 jobcategory$!:Observable<any[]>;
-onFormSubmit(formResponse:NgForm){
 
 
-}
-
-constructor(private jobcategoryservice: JobcategoryService){}
+constructor(private jobcategoryservice: JobcategoryService, private jobservice:JobsService, private router:Router){}
 ngOnInit(){
  this.jobcategory$= this.jobcategoryservice.getJobCategories();
 //console.log(this.jobcategory$);
 
 }
+onFormSubmit(formResponse:NgForm){
 
+  this.jobservice.saveJobPost(formResponse.form.value).pipe(
+    take(1),
+    tap(() => {
+      this.router.navigateByUrl('/')
+    })
+  ).subscribe();
+}
 
 }

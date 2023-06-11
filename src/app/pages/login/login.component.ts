@@ -1,7 +1,7 @@
 import { Component , OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { from,filter,tap } from 'rxjs';
+import { from,filter,tap, Observable } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginComponent implements OnInit {
 loginform!: FormGroup
-
+logincheck$ !:Observable<any>
 get useEmail(){
 
   return this.loginform.get('email');
@@ -44,7 +44,8 @@ this.loginform = new FormGroup({
 onSubmit(){
 //console.log(this.loginform.value)
 const { email, password }= this.loginform.value;
-this.loginservice.userLogin(email,password);
+this.logincheck$ =this.loginservice.userLogin(email,password);
+
 
 }
 }

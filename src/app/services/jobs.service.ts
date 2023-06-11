@@ -55,4 +55,8 @@ export class JobsService {
       ));
 
   }
+  saveJobPost(jobpost: any): Observable<any>{
+    console.log("Sending:", jobpost)
+    return this.http.post(`https://jobportal-3b9d6-default-rtdb.firebaseio.com/jobs.json`, jobpost)
+  }
 }
